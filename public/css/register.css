@@ -1,0 +1,147 @@
+
+
+.placement-content{
+
+    height: 92vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+    justify-content: center;
+}
+
+.placement-settings{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+    justify-content: center;
+}
+
+
+.left-box
+{
+    height: 80%;
+    width: 70%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.inputs-placement-up
+{ 
+    height: 30%;
+    width: 100%;
+}
+
+
+
+.inputs-placement-down
+{ 
+    height: 20%;
+    width: 100%;
+}
+
+
+
+.button-placement{
+    height: 15%;
+    width: 100%;
+}
+
+.confirm-button
+{
+    margin-top: 2%;
+    height: 70%;
+    width: calc(31% - 0.3vmax);
+    margin-left: 40%;
+}
+
+
+
+
+
+
+.right-box
+{   
+    height: 80%;
+    width:30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 4vmax;
+}
+
+.input-header-placement
+{
+
+    height: 12%;
+    width: 100%;
+
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+
+.input-header{
+    font-size: 4.5vmin;
+
+}
+
+
+#addPhoto.input-header-placement
+{
+     margin-top: 25%;
+     margin-bottom: 5%;
+     justify-content: center;
+}
+
+
+
+.profile-block{
+    height: 15vmax;
+    width: 15vmax;
+    border-radius: 10vmax;
+    /* border: 0.2vmax solid #707070; */
+    justify-content: center;
+    font-size: 5vmax;
+}
+
+.profile-block > i {
+    background-color: transparent;
+    font-size: 6vmax;
+    display: block;
+  }
+
+.profile-block > input {
+    background-color: transparent;
+    font-size: 0.7vmax;
+    display: block;
+  }
+
+
+  @media only screen and (max-width: 750px) {
+
+    .placement-navigation{
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        }
+
+    .left-box{
+    width: 67%;
+    }
+    
+    .right-box{
+        width:33%;
+    }
+
+  }

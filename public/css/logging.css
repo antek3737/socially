@@ -1,0 +1,158 @@
+.menu
+{
+    visibility: hidden;
+}
+
+.placement-content
+{
+    height: 77vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+}
+
+
+
+.medium-avatar > img
+{
+
+    visibility: hidden;
+}
+
+.clock
+{
+    visibility: hidden;
+    
+}
+
+
+.logging-placement{
+
+    height: 100%;
+    width: 30%;
+    font-weight: normal;
+    font-size: 2.5vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    /* background-color: yellow; */
+}
+
+.logo{
+    height: 15vmax;
+    width: 15vmax;
+    margin-bottom: 2vmax;
+    border-radius: 50%; 
+    background-color: #cfe6e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo > img{
+    height: 150%;
+    width: 150%;
+}
+
+
+.inputs-placement
+{
+    height: 20%;
+    width: 86%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.input-space
+{
+    width: calc(100% - 0.15vmax);
+    height: 40%;
+    background: #948090D1;
+    border: 0.15vmax solid #707070;
+    border-radius: 2vh;
+    color: #bfbebf;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.3vw;
+    font-size: 3vmin;
+    font-weight: bold;
+}
+
+
+
+.button-placement{
+    margin-top: 3%;
+    margin-bottom: 0.5%;
+    height: 10%;
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+#bottom.create-account 
+{
+    width: 90%;
+    height: 5%;
+    font-size: 2vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.confirm-button
+{
+    height: 80%;
+    width: 90%;
+    background: #5F465A45;
+    border: 0.15vmax solid #707070;
+    border-radius: 1.5vmax;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.footer{
+    visibility: hidden;
+}
+
+
+
+@media only screen and (max-width: 750px) {
+
+    .logging-placement{
+        height: 100%;
+        width: 50%;
+        font-weight: normal;
+        font-size: 2.5vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        /* background-color: yellow; */
+    }
+
+    #bottom.create-account {
+        font-size: 4vmin;
+    }
+    .confirm-button {
+        font-size: 2.5vmax;
+    }
+}

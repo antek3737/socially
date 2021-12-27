@@ -1,0 +1,126 @@
+.menu
+{
+    height: 11vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    padding-left: calc(2.8vw + 2vmax);
+}
+
+.placement-content
+{
+    height: 77vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+}
+
+.medium-avatar > img
+{
+    height: 4.5vmax;
+    width: 4.5vmax;
+    border: 0.72vh solid #cfe6e4;
+    border-radius: 50%;
+}
+
+
+.groups-placement{
+
+    height: 80%;
+    width: 45%;
+
+    font-weight: normal;
+    font-size: 2.5vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+}
+
+
+.search-bar{
+    height: calc(15% - 0.1vmax);
+    width: 86%;
+    margin-bottom: 1.5vh;
+    font-size: 2vmax;
+    display: inline;
+}
+
+.groups{
+    height: 85%;
+    width: 100%;
+    margin-top: 3vh;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+
+}
+
+.one-group{
+    margin-top: 1vh;
+    height: calc(25% - 1vh);
+    width: 80%;
+    border-radius: 6vmax;
+     font-weight:  bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color:#201F25;
+    font-size: 2vmax;
+    background-color: #B5B3BC;
+    text-decoration: none;
+}
+
+#search{
+
+    font-size: 5vmin;
+}
+
+
+
+.one-group:link ,.one-group:visited  {
+    color: #201F25;
+}
+
+.one-group:hover{
+    color: rgb(97, 87, 29);
+}
+
+@media only screen and (max-width: 750px) {
+    .placement-navigation{
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        }
+
+
+    .groups-placement{
+
+        height: 88%;
+        width: 90%;
+
+        font-weight: normal;
+        font-size: 2.5vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap:nowrap;
+    }
+
+
+    .search-bar{
+        padding-top: 8.5%;
+    }
+}

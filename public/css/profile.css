@@ -1,0 +1,103 @@
+
+
+.placement-profile 
+{
+    margin-top: 2vh;
+    height: 30vmax;
+    width: 25vmax;
+
+}
+
+ .profile-block
+{
+    height: calc(100% -  0.3vmax);
+    width: calc(100% -  0.3vmax);
+    background: #5F465A45;
+
+    border: 0.15vmax solid #707070;
+    border-radius: 1.5vmax;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+ .profile-block-avatar-block
+{
+    height: calc(25% -  0.15vmax);
+    width: calc(40% -  0.3vmax);
+    background: #5F465A45;
+
+    border-top: 0vmax;
+    border-left:0.15vmax solid #707070; 
+    border-right: 0.15vmax solid #707070;
+    border-bottom:0.15vmax solid #707070;
+    border-radius:0 0 2vmax 2vmax;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+ .profile-block-nickname-block
+{
+    height: calc(10% -  0.25vmax);
+    width: 60%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom:0.25vmax solid #707070;
+    background-color: transparent;
+    color: #bfbebf;
+    padding-left: 0.3vw;
+    font-size: 3vmin;
+}
+
+ .profile-block-description-block
+{
+
+    margin-top: 2.5%;
+    padding:2%;
+    height: calc(60% - 0.3vmax);
+    margin-bottom: 2.5%;
+    width: calc(55% - 0.3vmax);
+    border: 0.15vmax solid #707070;
+    border-radius: 2vmax;
+    background-color: transparent;
+    color: #bfbebf;
+    font-size: 3vmin;
+}
+
+
+/* .profile-block-description-input{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    color: #bfbebf;
+} */
+
+
+
+
+.placement-people
+{
+    margin-top: 2.5%;
+    height: calc(25% - 3.5%);
+    margin-bottom: 1.5%;
+    width: 32%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+   
+}
+
+
+
+
+

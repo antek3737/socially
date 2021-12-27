@@ -1,0 +1,97 @@
+
+.placement-content{
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.placement-event
+{
+    margin-top: 1vh;
+    height: 18vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+
+/* ------------------- PLACEMENT-CALENDAR ------------------- */
+
+
+.placement-calendar
+{
+    margin-top: 2vh;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.calendar-top-placement
+{
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.calendar-frame
+{
+    height: 10%;
+    width: 60%;
+    border-bottom: 0.5vh solid #707070;
+    opacity: 0.63;
+    
+}
+
+.calendar-date-block
+{
+    height: 90%;
+    width: 30%;
+    background-color: #5F465A44;
+    opacity: 0.63;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.calendar-date-text
+{
+    font-size: 2vmax;
+    font-weight: bold;
+    letter-spacing: 0.05px;
+    color: #BFBEBF;
+}
+
+.calendar-bottom-placement
+{
+    height: calc(100% - 8vh);
+    width: 100%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 750px) {
+
+    .placement-calendar{
+        width: 95%;
+    }
+
+    .calendar-date-block{
+        width: 60%;
+    }
+
+    .calendar-date-text{
+        font-size: 3vmax;
+    }
+}

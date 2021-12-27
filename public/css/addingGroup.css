@@ -1,0 +1,157 @@
+.menu
+{
+    height: 11vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    padding-left: calc(2.8vw + 2vmax);
+}
+
+.placement-content
+{
+    height: 77vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+}
+
+.medium-avatar > img
+{
+    height: 4.5vmax;
+    width: 4.5vmax;
+    border: 0.72vh solid #cfe6e4;
+    border-radius: 50%;
+}
+
+
+.creating-placement{
+
+    height: 60%;
+    width: 35%;
+
+    font-weight: normal;
+    font-size: 2.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+}
+
+.profile-block-nickname-block
+{
+    margin-top: 8%;
+    margin-bottom: 2%;
+}
+
+.profile-block-nickname-block::placeholder {
+    color: #cfe6e4;
+    opacity: 0.9;
+  }
+
+
+.inputs-placement
+{
+    height: 50%;
+    width: 56%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+label{
+    margin-top: 2%;
+    font-size: 2vmin;
+
+}
+
+
+#top.input-space
+{
+    margin-top: 2%;
+    width: calc(100% - 0.15vmax);
+    height: 25%;
+    background: #948090D1;
+    border: 0.15vmax solid #707070;
+    border-radius: 2vh;
+    
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.3vw;
+    font-size: 3vmin;
+    font-weight: bold;
+}
+
+#bottom.input-space
+{
+    margin-top: 8%;
+    width: calc(100% - 0.15vmax);
+    height: 25%;
+    background: #948090D1;
+    border: 0.15vmax solid #707070;
+    border-radius: 2vh;
+    
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.3vw;
+    font-size: 3vmin;
+    font-weight: bold;
+}
+
+.button-placement{
+    height: 20%;
+    width: 58%;
+    font-size: 3vmin;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.confirm-button
+{
+    height: 75%;
+    width: 80%;
+    background: #5F465A45;
+    border: 0.15vmax solid #707070;
+    border-radius: 1.5vmax;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+    .placement-navigation{
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+    }
+
+    .creating-placement{
+
+        height: 60%;
+        width: 70%;    
+    }
+
+    .profile-block-nickname-block{
+       margin-top: 14%;
+        margin-bottom: 2%;
+    }
+}
+

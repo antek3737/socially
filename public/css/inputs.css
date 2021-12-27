@@ -1,0 +1,116 @@
+
+.inputs-placement
+{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    color: #bfbebf;
+}
+
+
+
+.inputs-names-placement
+{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-around;
+    color: #bfbebf;
+}
+
+input{
+
+    color: #bfbebf;
+    background: #5F465A45;
+}
+
+
+.input-name
+{
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 4vmin;
+}
+
+.search-bar{
+    border-bottom:0.1vmax solid #707070;
+    border-right: 0;
+    border-left: 0;
+    border-top: 0;
+    background-color: inherit;
+    font-weight:  bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: end;
+}
+
+.inputs-spaces-placement
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: #bfbebf;
+}
+
+.input-space
+{
+    background: #5F465A45;
+    border: 0.15vmax solid #707070;
+    color: #bfbebf;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 0.3vw;
+    font-size: 3vmin;
+}
+
+
+.input-header-placement
+{
+
+    text-align: left;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.input-header
+{
+    font-size: 4vmin;
+    font-weight: normal;
+    -webkit-text-stroke-color: #707070;
+    -webkit-text-stroke-width: 0.28vw;
+    letter-spacing: 0.35vw;
+}
+
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(80%);
+}
+
+.button-placement{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-button
+{
+    background: #5F465A45;
+    border: 0.15vmax solid #707070;
+    border-radius: 1.5vmax;
+    font-size: 3vmin;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #bfbebf;
+}

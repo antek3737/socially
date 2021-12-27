@@ -1,0 +1,200 @@
+
+/* -------------------- PLACEMENT-PERSONAL-SETTINGS -------------------- */
+
+.placement-content{
+    display: flex;
+    flex-direction: column;   
+    align-items: center;
+    justify-content: center;
+}
+
+.placement-settings{
+    width: 80%;
+    height: 97%;
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+    justify-content: center;
+}
+
+
+.panel{
+    height: 3%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;   
+    align-items: center;
+    justify-content: left;
+}
+
+.left-box
+{
+    height: 100%;
+    width: 60%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+
+}
+
+
+.input-header-placement
+{
+
+    height: 10%;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+
+.input-header{
+    font-size: 5vmin;
+    /* font-weight: bold; */
+}
+
+.inputs-placement-up
+{ 
+    height: 20%;
+    width: 100%;
+    /* background-color: wheat; */
+}
+
+.inputs-placement-down
+{ 
+    height: 40%;
+    width: 100%;
+    /* background-color: crimson; */
+}
+
+
+.inputs-placement 
+{ 
+    height: 85%;
+    width: 100%;
+    color: inherit;
+    letter-spacing: 0.1vmin;
+}
+
+.button-placement{
+    height: 20%;
+    width: 100%;
+}
+
+ .confirm-button
+{
+    height: calc(50% -  0.3vmax);
+    width: calc(40% -  0.3vmax);
+    margin-left: 40%;
+    margin-bottom: 8%;
+} 
+
+
+
+
+
+
+.inputs-names-placement
+{
+    height: 100%;
+    width: 40%;
+    justify-content: space-around;
+}
+
+.inputs-spaces-placement
+{
+    height: 100%;
+    width: 60%;
+}
+
+.input-name
+{
+    height: 2vmax;
+    width: 100%;
+    font-size: 3.5vmin;
+}
+
+.input-space
+{
+    height: 2vmax;
+    width: 60%;
+}
+
+
+
+
+.right-box
+{   
+    height: 100%;
+    width: 40%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placement-profile 
+{
+    margin-top: 0vmax;
+    margin-bottom: 5vmax;
+}
+
+.localPhoto{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+
+    .placement-settings{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;   
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .left-box{
+        height: 60%;
+        width: 100%;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .right-box{   
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .input-header{
+        font-size: 4vmin;
+        /* font-weight: bold; */
+    }
+
+    .confirm-button
+    {
+        height: calc(40% -  0.3vmax);
+        width: calc(30% -  0.3vmax);
+        margin-left: 40%;
+        margin-bottom: 8%;
+    } 
+
+}
+
+
