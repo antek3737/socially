@@ -32,7 +32,6 @@ class GroupRepository extends Repository
 
     }
 
-
     public function isGroupNameTaken(string $groupName): bool
     {
 
@@ -54,7 +53,6 @@ class GroupRepository extends Repository
 
     }
 
-
     public function createGroup(Group $group)
     {
 
@@ -73,7 +71,7 @@ class GroupRepository extends Repository
 
     }
 
-    public function generateLocalUserAccount(int $IDglobUser)
+    public function generateGlobUserLocalUserConnection(int $IDglobUser)
     {
 
         $stmt = $this->database->connect()->prepare('
@@ -96,7 +94,7 @@ class GroupRepository extends Repository
 
     }
 
-    public function connectLocalUserWithGroup(int $IDglobUserlocalUser, int $IDgroup)
+    public function generateGlobUserLocalUserGroupConnection(int $IDglobUserlocalUser, int $IDgroup)
     {
 
         $stmt = $this->database->connect()->prepare('
@@ -118,11 +116,84 @@ class GroupRepository extends Repository
            DELETE FROM public."GlobUserLocalUser" WHERE "IDglobUserlocalUser" = :IDglobUserlocalUser');
             $stmt->bindParam(':IDglobUserlocalUser', $IDglobUserlocalUser, PDO::PARAM_INT);
             $stmt->execute();
-            $excMsg = "You have added this group before!"."ur local user id = ".$IDglobUserlocalUser;
+            $excMsg = "You have added this group before!" . "ur local user id = " . $IDglobUserlocalUser;
 //            throw new InvalidArgumentException("You have added this group before!");
             throw new InvalidArgumentException($excMsg);
 
         }
+    }
+
+    public function getIDglobUserLocalUser()
+    {
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT "GlobUserLocalUser"."IDglobUserlocalUser" as "IDglobUserlocalUser"  from "GlobUserLocalUser"
+            join "GlobUserLocalUserGroup" GULUG on "GlobUserLocalUser"."IDglobUserlocalUser" = GULUG."IDglobUserlocalUser"
+            where GULUG."IDgroup"=:IDgroup and "IDglobUser"=:IDglobUser
+        ');
+
+
+        $groupCookie = json_decode($_COOKIE['group'],true);
+        $IDgroup = $groupCookie['groupID'];
+
+        $globUserCookie = json_decode($_COOKIE['globUser'],true);
+        $IDglobUser=$globUserCookie['IDglobUser'];
+
+
+
+        $stmt->bindParam(':IDglobUser', $IDglobUser);
+        $stmt->bindParam(':IDgroup', $IDgroup);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result == false) {
+            throw new InvalidArgumentException("There is no globUserLocalUser!");
+        }
+
+        return $result['IDglobUserlocalUser'];
+
+
+    }
+
+    public function getIDglobUserLocalUserViaGroupID($groupID)
+    {
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT "GlobUserLocalUser"."IDglobUserlocalUser" as "IDglobUserlocalUser"  from "GlobUserLocalUser"
+            join "GlobUserLocalUserGroup" GULUG on "GlobUserLocalUser"."IDglobUserlocalUser" = GULUG."IDglobUserlocalUser"
+            where GULUG."IDgroup"=:IDgroup and "IDglobUser"=:IDglobUser
+        ');
+
+
+
+        $globUserCookie = json_decode($_COOKIE['globUser'],true);
+        $IDglobUser=$globUserCookie['IDglobUser'];
+
+
+
+        $stmt->bindParam(':IDglobUser', $IDglobUser);
+        $stmt->bindParam(':IDgroup', $groupID);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result == false) {
+            throw new InvalidArgumentException("There is no globUserLocalUser!");
+        }
+
+        return $result['IDglobUserlocalUser'];
+
+
+    }
+
+    public function refreshIDglobUserLocalUserCookie($groupID){
+        $cookie_name = "IDGlobUserLocalUser";
+        $cookieValue['IDGlobUserLocalUser']=$this->getIDglobUserLocalUserViaGroupID($groupID);
+        $cookie_value = json_encode($cookieValue);
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
     }
 
     public function getGlobUserGroups(): array
@@ -208,8 +279,19 @@ class GroupRepository extends Repository
             $group['groupPassword'],
             $group['groupSalt'],
             $group['IDgroup']
-    );
+        );
     }
+
+    public function refreshGroupCookie(int $groupID){
+        $group = $this->getGroupByGroupID($groupID);
+
+        $cookie_name = "group";
+        $groupValue['groupName']=$group->getGroupName();
+        $groupValue['groupID']=$group->getIDgroup();
+        $cookie_value = json_encode($groupValue);
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+    }
+
 
     public function getGlobUserGroupsByGroupName(string $searchString)
     {

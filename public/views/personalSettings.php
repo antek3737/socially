@@ -28,7 +28,7 @@
                     <button  name="logOut" class="fa fa-sign-out" aria-hidden="true"></button>
             </div>
 
-            <div class="placement-settings">
+            <form class="placement-settings" action="updateLocalUserAccount" method="POST" ENCTYPE="multipart/form-data">
 
                 <div class="placement-profile">
                     <div class="profile-block">
@@ -37,9 +37,9 @@
                                 <img src="/public/img/main_avatar.jpg">
                             </div>
                         </div>
-                        <input type="file" class="localPhoto">
+                        <input type="file" class="localPhoto" name="localPhoto">
 
-                        <input type="text" class="profile-block-nickname-block" name="nickname" minlength="3"
+                        <input type="text" class="profile-block-nickname-block" name="localName" minlength="3"
                                maxlength="20" size="10" placeholder="localName">
                         <textarea name="localDescription" class="profile-block-description-block" maxlength="135">Write something here</textarea>
                     </div>
@@ -48,7 +48,7 @@
                 <div class="button-placement">
                     <button class="confirm-button" type="submit">CONFIRM</button>
                 </div>
-            </div>
+            </form>
         </div>
 
 

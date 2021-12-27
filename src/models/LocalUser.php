@@ -4,9 +4,9 @@ class LocalUser
 {
     private int $IDlocalUser;
     private int $IDglobUserlocalUser;
-    private string $localName;
-    private string $localDescription;
-    private string $localPhoto;
+    private  $localName;
+    private  $localDescription;
+    private  $localPhoto;
 
     /**
 
@@ -14,13 +14,44 @@ class LocalUser
      * @param string $localDescription
      * @param string $localPhoto
      */
-    public function __construct( string $localName, string $localDescription, string $localPhoto)
+    public function __construct(  $localName,  $localDescription,  $localPhoto)
     {
         $this->localName = $localName;
         $this->localDescription = $localDescription;
         $this->localPhoto = $localPhoto;
     }
 
+    /**
+     * @return int
+     */
+    public function getIDlocalUser(): int
+    {
+        return $this->IDlocalUser;
+    }
+
+    /**
+     * @param int $IDlocalUser
+     */
+    public function setIDlocalUser(int $IDlocalUser): void
+    {
+        $this->IDlocalUser = $IDlocalUser;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIDglobUserlocalUser(): int
+    {
+        return $this->IDglobUserlocalUser;
+    }
+
+    /**
+     * @param int $IDglobUserlocalUser
+     */
+    public function setIDglobUserlocalUser(int $IDglobUserlocalUser): void
+    {
+        $this->IDglobUserlocalUser = $IDglobUserlocalUser;
+    }
 
     /**
      * @return string
@@ -69,7 +100,6 @@ class LocalUser
     {
         $this->localPhoto = $localPhoto;
     }
-
 
 
 

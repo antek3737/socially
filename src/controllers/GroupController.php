@@ -4,17 +4,20 @@ require_once 'AppController.php';
 require_once __DIR__ . "/../models/Group.php";
 require_once __DIR__ . '/../repository/GlobUserRepository.php';
 require_once __DIR__ . '/../repository/GroupRepository.php';
+require_once __DIR__ . '/../repository/LocalUserRepository.php';
 
 class GroupController extends AppController
 {
 
     private $GroupRepository;
+    private $LocalUserRepository;
     private $message = null;
 
     public function __construct()
     {
         parent::__construct();
         $this->GroupRepository = new GroupRepository();
+        $this->LocalUserRepository = new LocalUserRepository();
     }
 
     public function groups()
@@ -96,8 +99,8 @@ class GroupController extends AppController
         try {
             $group = $this->GroupRepository->getGroup($groupName);
             $globUserWithIDArray = json_decode($_COOKIE['globUser'], true);
-            $IDglobUserlocalUser = $this->GroupRepository->generateLocalUserAccount($globUserWithIDArray['IDglobUser']);
-            $IDglobUserlocalUsergroup = $this->GroupRepository->connectLocalUserWithGroup($IDglobUserlocalUser, $group->getIDgroup());
+            $IDglobUserlocalUser = $this->GroupRepository->generateGlobUserLocalUserConnection($globUserWithIDArray['IDglobUser']);
+            $IDglobUserlocalUsergroup = $this->GroupRepository->generateGlobUserLocalUserGroupConnection($IDglobUserlocalUser, $group->getIDgroup());
 
         } catch (InvalidArgumentException $exception) {
             return $this->render("addingGroup", ["message" => $exception->getMessage()]);
@@ -126,7 +129,8 @@ class GroupController extends AppController
         }
     }
 
-    public function setGroupCookie(){
+    public function setGroupCookie()
+    {
 
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
@@ -137,29 +141,35 @@ class GroupController extends AppController
             http_response_code(200);
 
 
-                $groupName = $decoded['groupName'];
-                $givenGroup = $this->GroupRepository->getGroup($groupName);
-                if($givenGroup == null) die;
-                $cookie_name = "group";
-                $value['groupID']=$givenGroup->getIDgroup();
-                $value['groupName']=$givenGroup->getGroupName();
-                $cookie_value =json_encode($value);
-                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+            $groupName = $decoded['groupName'];
+            $givenGroup = $this->GroupRepository->getGroup($groupName);
+            if ($givenGroup == null) die;
+            $cookie_name = "group";
+            $value['groupID'] = $givenGroup->getIDgroup();
+            $value['groupName'] = $givenGroup->getGroupName();
+            $cookie_value = json_encode($value);
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         }
 
         echo "done";
 
     }
-    public function join(int $groupID){
+
+    public function join(int $groupID)
+    {
 
         http_response_code(200);
-        $givenGroup =  $this->GroupRepository->getGroupByGroupID($groupID);
-        $cookie_name = "group";
+        $this->GroupRepository->refreshGroupCookie($groupID);
+        $this->GroupRepository->refreshIDglobUserLocalUserCookie($groupID);
 
-        $groupValue['groupName']=$givenGroup->getGroupName();
-        $groupValue['groupID']=$givenGroup->getIDgroup();
-        $cookie_value = json_encode($groupValue);
-        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+        $IDglobUserLocalUser = $this->GroupRepository->getIDglobUserLocalUserViaGroupID($groupID);
+
+        $this->LocalUserRepository->refreshLocalUserCookie($IDglobUserLocalUser);
+
+
+        $this->render('logging');
+
+
     }
 
 
