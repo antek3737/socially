@@ -10,65 +10,35 @@
 <body>
 
 <?php include 'verifyCookies.php'; ?>
-<?php include 'createGlobUserViaCookie.php'; ?>
+<?php include 'createUserViaCookie.php'; ?>
 <?php include 'createGroupViaCookies.php'; ?>
 
 <div class="container">
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <div class="placement-navigation">
         <?php include 'navigation.php'; ?>
     </div>
 
-
     <div class="placement-content">
-
-        <div class="placement-profile">
-            <div class="profile-block">
-                <div class="profile-block-avatar-block">
-                    <div id="avatar-block">
-                        <img src="/public/img/main_avatar.jpg">
+        <?php foreach ($localUsers as $localUser): ?>
+            <div class="placement-profile">
+                <div class="profile-block">
+                    <div class="profile-block-avatar-block">
+                        <div id="avatar-block">
+                            <img src="/public/uploads/<?= $localUser->getLocalPhoto() ?>">
+                        </div>
                     </div>
+                    <div class="profile-block-nickname-block"> <?= $localUser->getLocalName() ?></div>
+                    <div class="profile-block-description-block"><?= $localUser->getLocalDescription() ?></div>
                 </div>
-                <div class="profile-block-nickname-block"> Tim Gold
-                </div>
-                <div class="profile-block-description-block">I am Tim and I am 21 y.o.</div>
             </div>
-        </div>
-
-        <div class="placement-people">
-            <div class="smallest-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-            <div class="small-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-            <div class="medium-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-
-            <div class="big-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-
-
-            <div class="medium-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-            <div class="small-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-
-            <div class="smallest-avatar">
-                <img src="/public/img/main_avatar.jpg">
-            </div>
-
-        </div>
-
+        <? endforeach; ?>
     </div>
 
+</div>
+<?php include 'footer.php'; ?>
 
-    <?php include 'footer.php'; ?>
 </body>
 
 

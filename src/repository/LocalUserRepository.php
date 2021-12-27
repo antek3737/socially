@@ -161,4 +161,36 @@ class LocalUserRepository extends Repository
     }
 
 
+    public function getAllLocalUsersInCurrentGroup(): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT "IDlocalUser", GULUG."IDglobUserlocalUser", "localName", "localDescription", "localPhoto" from "LocalUser"
+            join "GlobUserLocalUserGroup" GULUG on "LocalUser"."IDglobUserlocalUser" = GULUG."IDglobUserlocalUser"
+            where "IDgroup" = :IDgroup;
+        ');
+
+        $IDcookie = json_decode($_COOKIE['group'], true);
+        $ID = $IDcookie['groupID'];
+
+        $stmt->bindParam(':IDgroup', $ID, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $localUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($localUsers as $localUser) {
+                $local= new LocalUser(
+                $localUser['localName'],
+                $localUser['localDescription'],
+                $localUser['localPhoto'],
+            );
+            $local->setIDlocalUser($localUser['IDlocalUser']);
+            $local->setIDglobUserlocalUser($localUser['IDglobUserlocalUser']);
+            $result[]=$local;
+        }
+
+        return $result;
+    }
 }

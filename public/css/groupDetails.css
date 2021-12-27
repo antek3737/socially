@@ -1,8 +1,9 @@
 .placement-content{
-    display: flex;
-    flex-direction: column;   
-    align-items: center;
-    justify-content: flex-start;
+    height: auto;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
 }
 
 /* -------------------- PLACEMENT-GROUP-DETAILS -------------------- */
@@ -17,8 +18,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-   
+
 }
+
 
 
 

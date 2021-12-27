@@ -12,7 +12,7 @@
 
 .placement-content
 {
-    height: 77vh;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -68,7 +68,7 @@
 
 .one-group{
     margin-top: 1vh;
-    height: calc(25% - 1vh);
+    height: 12vh;
     width: 80%;
     border-radius: 6vmax;
      font-weight:  bold;

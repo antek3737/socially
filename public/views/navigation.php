@@ -11,7 +11,7 @@ echo '
 
 
             <div class id="avatar">
-                <img src="/public/uploads/', $globUser->getGlobPhoto() ,'">
+                <img src="/public/uploads/', $avatar ,'">
             </div>
 
             <a href="main">

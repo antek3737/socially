@@ -29,10 +29,10 @@ class DefaultController extends AppController {
         $this->render('creatingEvent');
     }
 
-    public function groupDetails()
-    {
-        $this->render('groupDetails');
-    }
+//    public function groupDetails()
+//    {
+//        $this->render('groupDetails');
+//    }
 
 //    public function groups()
 //    {

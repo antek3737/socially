@@ -12,7 +12,7 @@
 <body>
 
 <?php include 'verifyCookies.php'; ?>
-<?php include 'createGlobUserViaCookie.php'; ?>
+<?php include 'createUserViaCookie.php'; ?>
 <?php include 'createGroupViaCookies.php'; ?>
 
 <div class="container">
@@ -33,7 +33,7 @@
                 <div class="event-background">
                     <div class="event-avatar">
                         <div class="big-avatar">
-                            <img src="/public/uploads/<?= $globUser->getGlobPhoto() ?>">
+                            <img src="/public/uploads/<?= $avatar ?>">
                         </div>
                     </div>
                     <div class="event-details">
@@ -109,7 +109,7 @@
             <div class="event-background">
                 <div class="event-avatar">
                     <div class="big-avatar">
-                        <img src="/public/uploads/<?= $globUser->getGlobPhoto() ?>">
+                        <img src="/public/uploads/<?= $avatar ?>">
                     </div>
                 </div>
                 <div class="event-details">

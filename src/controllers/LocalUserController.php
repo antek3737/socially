@@ -132,6 +132,14 @@ class LocalUserController extends AppController
 
         return null;
     }
+
+    public function groupDetails()
+    {
+        $localUsers = $this->LocalUserRepository->getAllLocalUsersInCurrentGroup();
+        $this->render('groupDetails', ['localUsers' => $localUsers]);
+
+    }
+
 }
 
 ?>

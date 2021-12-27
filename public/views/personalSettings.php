@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <?php include 'verifyCookies.php'; ?>
-    <?php include 'createGlobUserViaCookie.php'; ?>
+    <?php include 'createUserViaCookie.php'; ?>
     <?php include 'createGroupViaCookies.php'; ?>
 
     <div class="container">
@@ -34,7 +34,7 @@
                     <div class="profile-block">
                         <div class="profile-block-avatar-block">
                             <div class="big-avatar">
-                                <img src="/public/img/main_avatar.jpg">
+                                <img src="/public/uploads/<?= $avatar ?>">
                             </div>
                         </div>
                         <input type="file" class="localPhoto" name="localPhoto">

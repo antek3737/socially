@@ -10,7 +10,7 @@
 <body>
 
 <?php include 'verifyCookies.php'; ?>
-<?php include 'createGlobUserViaCookie.php'; ?>
+<?php include 'createUserViaCookie.php'; ?>
 <?php include 'createGroupViaCookies.php'; ?>
 
 <div class="container">
