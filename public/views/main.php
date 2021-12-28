@@ -14,13 +14,35 @@
 <?php include 'createGroupViaCookies.php'; ?>
 
 <div class="container">
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <div class="placement-navigation">
         <?php include 'navigation.php'; ?>
     </div>
 
     <div class="placement-content">
+        <?php foreach ($events as $event): ?>
+            <?php echo $event->getIDevent() ?>
+            <?php echo '<br>' ?>
+            <?php echo $event->getEventDescription() ?>
+            <?php echo '<br>' ?>
+            <?php echo $event->getEventLocation() ?>
+            <?php echo '<br>' ?>
+            <?php echo $event->getEventTime();
+            echo '<br>';
+            $given = date('Y-m-d H:i',strtotime($event->getEventTime()));
+            $current = date('Y-m-d H:i');
+
+            $days = gmdate("d", strtotime($event->getEventTime())) -gmdate("d");
+            $hours = gmdate("H", strtotime($event->getEventTime())) + $days*24;
+            $minutes =  gmdate("i", strtotime($event->getEventTime()));
+            echo $days.'<br>';
+            echo $hours.'<br>';
+            echo $minutes.'<br>';
+
+
+            ?>
+        <?php endforeach; ?>
 
         <!-- .......................................EVENT................................................... -->
 
@@ -96,7 +118,7 @@
 <!---->
 <!---->
 <!--            <div class id="avatar">-->
-<!--                <img src="/public/uploads/--><?//= $globUser->getGlobPhoto() ?><!--">-->
+<!--                <img src="/public/uploads/--><? //= $globUser->getGlobPhoto() ?><!--">-->
 <!--            </div>-->
 <!---->
 <!--            <a href="main">-->
@@ -120,6 +142,6 @@
 
 <!--    <div class="header">-->
 <!--        <div class="item">-->
-<!--            <p class="group-name">--><?//= $group->getGroupName()?><!--</p>-->
+<!--            <p class="group-name">--><? //= $group->getGroupName()?><!--</p>-->
 <!--        </div>-->
 <!--    </div>-->
