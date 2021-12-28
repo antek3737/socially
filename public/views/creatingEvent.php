@@ -74,7 +74,7 @@
                     <div class="inputs-spaces-placement">
                         <input type="time" class="input-space" name="time" required minlength="4" maxlength="8"
                                size="10">
-                        <input type="date" class="input-space" name="date" required minlength="4" maxlength="8"
+                        <input type="date" class="input-space" name="date"  required minlength="4" maxlength="8"
                                size="10">
                         <input type="time" class="input-space" name="deadlineTime" required minlength="4" maxlength="8"
                                size="10">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="button-placement">
-                    <button type="submit" class="confirm-button" action="groups">create event</button>
+                    <button type="submit" class="confirm-button" >create event</button>
                 </div>
 
             </div>
@@ -152,13 +152,13 @@
                            size="10">
                     <input type="date" class="input-space" name="date" required minlength="4" maxlength="8"
                            size="10">
-                    <input type="time" class="input-space" id="spaceToHide" name="deadlineTime" required minlength="4" maxlength="8"
+                    <input type="time" class="input-space" id="spaceToHide" name="deadlineTime"  minlength="4" maxlength="8"
                            size="10">
                     <input type="checkbox" name="eventDeadlineModeOn" class="input-space" >
                 </div>
             </div>
             <div class="button-placement">
-                <button type="submit" class="confirm-button" action="groups">create event</button>
+                <button type="submit" class="confirm-button" >create event</button>
             </div>
 
         </div>

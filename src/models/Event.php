@@ -4,25 +4,35 @@ class Event
 {
     private string $eventDescription;
     private string $eventLocation;
-    private string $eventTime;
-    private string $eventDate;
     private string $eventPhoto;
+    private  $eventTime;
+    private int $IDevent;
 
-    /**
-     * @param string $eventDescription
-     * @param string $eventLocation
-     * @param $eventTime
-     * @param $eventDate
-     * @param string $eventPhoto
-     */
-    public function __construct(string $eventDescription, string $eventLocation, $eventTime, $eventDate, string $eventPhoto)
+
+    public function __construct(string $eventDescription, string $eventLocation, $eventTime)
     {
         $this->eventDescription = $eventDescription;
         $this->eventLocation = $eventLocation;
         $this->eventTime = $eventTime;
-        $this->eventDate = $eventDate;
-        $this->eventPhoto = $eventPhoto;
     }
+
+    /**
+     * @return int
+     */
+    public function getIDevent(): int
+    {
+        return $this->IDevent;
+    }
+
+    /**
+     * @param int $IDevent
+     */
+    public function setIDevent(int $IDevent): void
+    {
+        $this->IDevent = $IDevent;
+    }
+
+
 
     /**
      * @return string
@@ -57,38 +67,6 @@ class Event
     }
 
     /**
-     * @return mixed
-     */
-    public function getEventTime()
-    {
-        return $this->eventTime;
-    }
-
-    /**
-     * @param mixed $eventTime
-     */
-    public function setEventTime($eventTime): void
-    {
-        $this->eventTime = $eventTime;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEventDate()
-    {
-        return $this->eventDate;
-    }
-
-    /**
-     * @param mixed $eventDate
-     */
-    public function setEventDate($eventDate): void
-    {
-        $this->eventDate = $eventDate;
-    }
-
-    /**
      * @return string
      */
     public function getEventPhoto(): string
@@ -102,6 +80,22 @@ class Event
     public function setEventPhoto(string $eventPhoto): void
     {
         $this->eventPhoto = $eventPhoto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEventTime()
+    {
+        return $this->eventTime;
+    }
+
+    /**
+     * @param mixed $eventTime
+     */
+    public function setEventTime($eventTime): void
+    {
+        $this->eventTime = $eventTime;
     }
 
 

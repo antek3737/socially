@@ -44,10 +44,10 @@ class DefaultController extends AppController {
         $this->render('logging',array('message'=>'hello'));
     }
 
-    public function main()
-    {
-        $this->render('main');
-    }
+//    public function main()
+//    {
+//        $this->render('main');
+//    }
 
     public function personalSettings()
     {

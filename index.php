@@ -15,7 +15,9 @@ Router::get('chosen', 'DefaultController');
 Router::get('creatingEvent', 'DefaultController');
 //Router::get('groups', 'DefaultController');
 Router::get('groups', 'GroupController');
-Router::get('main', 'DefaultController');
+//Router::get('main', 'DefaultController');
+Router::get('main', 'EventController');
+
 //Router::get('groupDetails', 'DefaultController');
 Router::get('personalSettings', 'DefaultController');
 Router::get('logging', 'DefaultController');

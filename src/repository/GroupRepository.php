@@ -6,6 +6,8 @@ require_once __DIR__ . '/../models/Group.php';
 class GroupRepository extends Repository
 {
 
+
+
     public function getGroup(string $groupName): Group
     {
 
@@ -236,7 +238,7 @@ class GroupRepository extends Repository
             SELECT   "groupName", "groupPassword", "groupSalt", G."IDgroup"  from "GlobUserLocalUserGroup"
             join "Group" G on "GlobUserLocalUserGroup"."IDgroup" = G."IDgroup"
             join "GlobUserLocalUser" GULU on GULU."IDglobUserlocalUser" = "GlobUserLocalUserGroup"."IDglobUserlocalUser"
-            WHERE GULU."IDglobUser" =:IDglobUser AND WHERE G."groupName" == :groupName
+            WHERE GULU."IDglobUser" =:IDglobUser AND  G."groupName" == :groupName
         ');
 
 
@@ -313,6 +315,27 @@ class GroupRepository extends Repository
 
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getCurrentIDglobUserlocalUsergroup()
+    {
+
+        $stmt = $this->database->connect()->prepare('
+                SELECT "IDglobUserlocalUsergroup" FROM "GlobUserLocalUserGroup"
+                WHERE "IDglobUserlocalUser" = :IDglobUserlocalUser
+        ');
+
+        $IDglobUserlocalUser = json_decode($_COOKIE['IDGlobUserLocalUser'],true);
+        $IDglobUserlocalUser = $IDglobUserlocalUser['IDGlobUserLocalUser'];
+
+        $stmt->bindParam(':IDglobUserlocalUser', $IDglobUserlocalUser, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $IDglobUserlocalUserGroup = $result['IDglobUserlocalUsergroup'];
+
+        return $IDglobUserlocalUserGroup;
 
     }
 
