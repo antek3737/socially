@@ -22,71 +22,57 @@
 
     <div class="placement-content">
         <?php foreach ($events as $event): ?>
-            <?php echo $event->getIDevent() ?>
-            <?php echo '<br>' ?>
-            <?php echo $event->getEventDescription() ?>
-            <?php echo '<br>' ?>
-            <?php echo $event->getEventLocation() ?>
-            <?php echo '<br>' ?>
-            <?php echo $event->getEventTime();
-            echo '<br>';
+        <?php
             $given = date('Y-m-d H:i',strtotime($event->getEventTime()));
             $current = date('Y-m-d H:i');
 
             $days = gmdate("d", strtotime($event->getEventTime())) -gmdate("d");
             $hours = gmdate("H", strtotime($event->getEventTime())) + $days*24;
             $minutes =  gmdate("i", strtotime($event->getEventTime()));
-            echo $days.'<br>';
-            echo $hours.'<br>';
-            echo $minutes.'<br>';
-
-
+//            echo $days.'<br>';
+//            echo $hours.'<br>';
+//            echo $minutes.'<br>';
             ?>
-        <?php endforeach; ?>
+            <!-- .......................................EVENT................................................... -->
 
-        <!-- .......................................EVENT................................................... -->
-
-        <div class="placement-event">
-            <div class="event-border">
-                <div class="event-border-time">02 h</div>
-                <div class="event-border-time">13 m</div>
-            </div>
-            <div class="event-background">
-                <div class="event-avatar">
-                    <div class="big-avatar">
-                        <img src="/public/img/main_avatar.jpg">
-                    </div>
+            <div class="placement-event">
+                <div class="event-border">
+                    <div class="event-border-time"><?= $hours ?> h</div>
+                    <div class="event-border-time"><?= $minutes ?> m</div>
                 </div>
-                <div class="event-details">
-                    <div class="event-details-message">Hello, let's dance tonight!</div>
-                    <div class="event-details-location-and-choosebar">
-                        <div class="event-location">
-
-                            <div class="location-icon">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-
-                            <p>Kraków</p>
-
+                <div class="event-background">
+                    <div class="event-avatar">
+                        <div class="big-avatar">
+                            <img src="/public/uploads/<?= $event->getEventPhoto() ?>">
                         </div>
-                        <form class="event-choosebar">
-                            <button class="event-left">
-                                <i class="fa fa-check"></i>
-                            </button>
-                            <button class="event-right">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </form>
                     </div>
-                    <!-- <div class="event-grip-lines">
-                      <i class="fa fa-bug"></i>
-                    </div> -->
+                    <div class="event-details">
+                        <div class="event-details-message"><?= $event->getEventDescription() ?></div>
+                        <div class="event-details-location-and-choosebar">
+                            <div class="event-location">
+
+                                <div class="location-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+
+                                <p><?= $event->getEventLocation() ?></p>
+
+                            </div>
+                            <form class="event-choosebar">
+                                <button class="event-left">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                <button class="event-right">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- .......................................EVENT-END................................................... -->
+            <!-- .......................................EVENT-END................................................... -->
 
-
+        <?php endforeach; ?>
     </div>
 
     <?php include 'footer.php'; ?>
