@@ -48,7 +48,6 @@ class EventRepository extends Repository
     }
 
 
-
     public function getEventsInCurrentGroup(): array
     {
         $result = [];
@@ -70,16 +69,100 @@ class EventRepository extends Repository
         $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($events as $event) {
-            $temp= new Event(
+            $temp = new Event(
                 $event['eventDescription'],
                 $event['eventLocation'],
                 $event['eventTime'],
             );
 
-            $temp->setEventPhoto( $event['eventPhoto']);
+            $temp->setEventPhoto($event['eventPhoto']);
             $temp->setIDevent($event['IDevent']);
 
-            $result[] =$temp;
+            $result[] = $temp;
+        }
+
+        return $result;
+    }
+
+    public function getEventsInCurrentGroupNotBelongingToUser(): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+                        SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+                        from "GlobUserLocalUserGroupEvent"
+                        join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+                        join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+                        where "IDgroup" = :IDgroup and GULUG."IDglobUserlocalUsergroup" !=:IDglobUserlocalUsergroup ;
+        ');
+
+
+        $groupCookie = json_decode($_COOKIE['group'], true);
+
+        $stmt->bindParam(':IDgroup', $groupCookie['groupID'], PDO::PARAM_INT);
+
+        $groupRepository = new GroupRepository();
+        $IDGlobUserLocalUserGroup = $groupRepository->getCurrentIDglobUserlocalUsergroup();
+
+        $stmt->bindParam(':IDglobUserlocalUsergroup', $IDGlobUserLocalUserGroup, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($events as $event) {
+            $temp = new Event(
+                $event['eventDescription'],
+                $event['eventLocation'],
+                $event['eventTime'],
+            );
+
+            $temp->setEventPhoto($event['eventPhoto']);
+            $temp->setIDevent($event['IDevent']);
+
+            $result[] = $temp;
+        }
+
+        return $result;
+    }
+
+    public function getEventsInCurrentGroupBelongingToUser(): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+                        SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+                        from "GlobUserLocalUserGroupEvent"
+                        join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+                        join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+                        where "IDgroup" = :IDgroup and GULUG."IDglobUserlocalUsergroup" =:IDglobUserlocalUsergroup ;
+        ');
+
+
+        $groupCookie = json_decode($_COOKIE['group'], true);
+
+        $stmt->bindParam(':IDgroup', $groupCookie['groupID'], PDO::PARAM_INT);
+
+        $groupRepository = new GroupRepository();
+        $IDGlobUserLocalUserGroup = $groupRepository->getCurrentIDglobUserlocalUsergroup();
+
+        $stmt->bindParam(':IDglobUserlocalUsergroup', $IDGlobUserLocalUserGroup, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($events as $event) {
+            $temp = new Event(
+                $event['eventDescription'],
+                $event['eventLocation'],
+                $event['eventTime'],
+            );
+
+            $temp->setEventPhoto($event['eventPhoto']);
+            $temp->setIDevent($event['IDevent']);
+
+            $result[] = $temp;
         }
 
         return $result;

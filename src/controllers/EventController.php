@@ -16,8 +16,14 @@ class EventController extends AppController
 
     public function main()
     {
-        $events = $this->eventRepository->getEventsInCurrentGroup();
+        $events = $this->eventRepository->getEventsInCurrentGroupNotBelongingToUser();
         $this->render('main', ['events' => $events]);
+    }
+
+   public function chosen()
+    {
+        $events = $this->eventRepository->getEventsInCurrentGroupBelongingToUser();
+        $this->render('chosen', ['events' => $events]);
     }
 
     public function createEvent()

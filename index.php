@@ -11,12 +11,13 @@ Router::get('', 'DefaultController');
 Router::get('addingGroup', 'DefaultController');
 Router::get('creatingGroup', 'DefaultController');
 Router::get('calendar', 'DefaultController');
-Router::get('chosen', 'DefaultController');
+//Router::get('chosen', 'DefaultController');
 Router::get('creatingEvent', 'DefaultController');
 //Router::get('groups', 'DefaultController');
 Router::get('groups', 'GroupController');
 //Router::get('main', 'DefaultController');
 Router::get('main', 'EventController');
+Router::get('chosen', 'EventController');
 
 //Router::get('groupDetails', 'DefaultController');
 Router::get('personalSettings', 'DefaultController');

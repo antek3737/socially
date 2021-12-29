@@ -15,26 +15,49 @@
 <?php include 'createGroupViaCookies.php'; ?>
 
 <div class="container">
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <div class="placement-navigation">
         <?php include 'navigation.php'; ?>
     </div>
 
+    <?php foreach ($events
+
+                   as $event): ?>
+<?php
+$given = strtotime($event->getEventTime());
+$current = new DateTime('now');
+//            echo "current: " . $current->format("H:i");
+$current = $current->getTimestamp();
+$rest = $given - $current;
+//            echo "rest: " .$rest;
+$hours = intval($rest / 3600);
+$minutes = intval(($rest - ($hours * 3600)) / 60);
+?>
+
+
+<?php
+
+
+if ($minutes < 0 || $hours < 0) {
+    continue;
+}
+?>
+
     <div class="placement-content">
         <div class="placement-event">
             <div class="event-border">
-                <div class="event-border-time">02 h</div>
-                <div class="event-border-time">13 m</div>
+                <div class="event-border-time"><?= $hours ?> h</div>
+                <div class="event-border-time"><?= $minutes ?> m</div>
             </div>
             <div class="event-background">
                 <div class="event-avatar">
                     <div class="big-avatar">
-                        <img src="public/img/main_avatar.jpg">
+                        <img src="/public/uploads/<?= $event->getEventPhoto() ?>">
                     </div>
                 </div>
                 <div class="event-details">
-                    <div class="event-details-message">Hello, let's dance tonight!</div>
+                    <div class="event-details-message"><?= $event->getEventDescription() ?></div>
                     <div class="event-details-location-and-choosebar">
                         <div class="event-location">
 
@@ -42,7 +65,7 @@
                                 <i class="fa fa-map-marker"></i>
                             </div>
 
-                            <p>Kraków</p>
+                            <p><?= $event->getEventLocation() ?></p>
 
                         </div>
                         <div class="event-choosebar" id="chosen">
@@ -54,6 +77,7 @@
                     </div> -->
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
 
 
