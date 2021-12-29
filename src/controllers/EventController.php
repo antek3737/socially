@@ -26,23 +26,32 @@ class EventController extends AppController
 
         $eventDescription = $_POST["eventDescription"];
         $eventLocation = $_POST["eventLocation"];
-
-        $date = strtotime($_POST["date"]);
+        $date = strtotime($_POST["date"]); //	Thu Dec 30 2021 00:00:00 GMT+0000
 
         $time = strtotime($_POST["time"]);
 
-        $full = $date+$time;
+        $hours = gmdate('H', $time);
+        $minutes = gmdate('i', $time);
 
 
+        $hoursToBeSubtracted = 0;
+        $minutesToBeSubtracted = 0;
 
         if (isset($_POST["deadlineTime"])) {
+
             $deadlineTime = $_POST["deadlineTime"];
-            $deadlineTime = strtotime($deadlineTime);
-            $full = $full - $deadlineTime;
+            $hoursToBeSubtracted = gmdate('H', strtotime($deadlineTime));
+            $minutesToBeSubtracted = gmdate('i', strtotime($deadlineTime));
+
         }
 
+        $fullHours = $hours - $hoursToBeSubtracted;
+        $fullMinutes = $minutes - $minutesToBeSubtracted;
+
+        $full = $date + $fullHours*3600 + $fullMinutes * 60;
+
+//        die();
         $eventToCreate = new Event($eventDescription, $eventLocation, $full);
-        $eventToCreate->setEventPhoto('lewak.jpg');
 
         $this->eventRepository->createEvent($eventToCreate);
 

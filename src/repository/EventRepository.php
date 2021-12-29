@@ -38,7 +38,6 @@ class EventRepository extends Repository
 
         $groupRepository = new GroupRepository();
         $IDGlobUserLocalUserGroup = $groupRepository->getCurrentIDglobUserlocalUsergroup();
-        echo $IDGlobUserLocalUserGroup;
 
         $stmt = $this->database->connect()->prepare('
            INSERT INTO public."GlobUserLocalUserGroupEvent" ("IDglobUserlocalUsergroup", "IDevent")
