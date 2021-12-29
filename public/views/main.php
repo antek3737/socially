@@ -22,16 +22,26 @@
 
     <div class="placement-content">
         <?php foreach ($events as $event): ?>
-        <?php
-            $given = date('Y-m-d H:i',strtotime($event->getEventTime()));
-            $current = date('Y-m-d H:i');
+            <?php
+            $given = strtotime($event->getEventTime());
+            $current = new DateTime('now');
+//            echo "current: " . $current->format("H:i");
+            $current = $current->getTimestamp();
+            $rest = $given - $current;
+//            echo "rest: " .$rest;
+            $hours = intval($rest / 3600);
+            $minutes =intval(($rest - ($hours * 3600)) / 60);
+            ?>
 
-            $days = gmdate("d", strtotime($event->getEventTime())) -gmdate("d");
-            $hours = gmdate("H", strtotime($event->getEventTime())) + $days*24;
-            $minutes =  gmdate("i", strtotime($event->getEventTime()));
-//            echo $days.'<br>';
-//            echo $hours.'<br>';
-//            echo $minutes.'<br>';
+
+                        <?php
+
+
+                    if($minutes<0 || $hours<0){
+                        continue;
+                    }
+
+                    if()
             ?>
             <!-- .......................................EVENT................................................... -->
 
