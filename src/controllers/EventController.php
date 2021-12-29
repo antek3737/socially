@@ -26,6 +26,12 @@ class EventController extends AppController
         $this->render('chosen', ['events' => $events]);
     }
 
+    public function calendar()
+    {
+        $events = $this->eventRepository->getEventsInCurrentGroup();
+        $this->render('calendar', ['events' => $events]);
+    }
+
     public function createEvent()
     {
 
@@ -64,6 +70,11 @@ class EventController extends AppController
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/chosen");
 
+    }
+
+    public function addEvent(int $id){
+        http_response_code(200);
+        $this->eventRepository->generateGlobUserLocalUserGroupEventConnection($id);
     }
 
 

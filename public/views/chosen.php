@@ -21,31 +21,31 @@
         <?php include 'navigation.php'; ?>
     </div>
 
-    <?php foreach ($events
-
-                   as $event): ?>
-<?php
-$given = strtotime($event->getEventTime());
-$current = new DateTime('now');
-//            echo "current: " . $current->format("H:i");
-$current = $current->getTimestamp();
-$rest = $given - $current;
-//            echo "rest: " .$rest;
-$hours = intval($rest / 3600);
-$minutes = intval(($rest - ($hours * 3600)) / 60);
-?>
-
-
-<?php
-
-
-if ($minutes < 0 || $hours < 0) {
-    continue;
-}
-?>
-
     <div class="placement-content">
-        <div class="placement-event">
+        <?php foreach ($events
+
+        as $event): ?>
+        <?php
+        $given = strtotime($event->getEventTime());
+        $current = new DateTime('now');
+        //            echo "current: " . $current->format("H:i");
+        $current = $current->getTimestamp();
+        $rest = $given - $current;
+        //            echo "rest: " .$rest;
+        $hours = intval($rest / 3600);
+        $minutes = intval(($rest - ($hours * 3600)) / 60);
+        ?>
+
+
+        <?php
+
+
+        if ($minutes < 0 || $hours < 0) {
+            continue;
+        }
+        ?>
+
+            <div class="placement-event" id=<?= $event->getIDevent() ?> >
             <div class="event-border">
                 <div class="event-border-time"><?= $hours ?> h</div>
                 <div class="event-border-time"><?= $minutes ?> m</div>
@@ -77,9 +77,8 @@ if ($minutes < 0 || $hours < 0) {
                     </div> -->
                 </div>
             </div>
-            <?php endforeach; ?>
         </div>
-
+        <?php endforeach; ?>
 
         <!--
           .....................................................

@@ -13,5 +13,5 @@
 // // .parentElement childElement
 // // .nextElementSibling, previous
 // // a className="one-group" href="main"><?= $group->getGroupName() ?></a>
-
+// document.querySelectorAll('p');
 

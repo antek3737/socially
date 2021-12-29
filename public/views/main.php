@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/font-awesome-4.7.0/css/font-awesome.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../public/js/addingEvent.js" defer></script>
 </head>
 <body>
 
@@ -32,18 +33,14 @@
             $hours = intval($rest / 3600);
             $minutes =intval(($rest - ($hours * 3600)) / 60);
             ?>
-
-
-                        <?php
-
-
-                    if($minutes<0 || $hours<0){
+                <?php
+                        if($minutes<0 || $hours<0){
                         continue;
-                    }
-            ?>
+                        }
+                ?>
             <!-- .......................................EVENT................................................... -->
 
-            <div class="placement-event">
+            <div class="placement-event" id=<?= $event->getIDevent() ?> >
                 <div class="event-border">
                     <div class="event-border-time"><?= $hours ?> h</div>
                     <div class="event-border-time"><?= $minutes ?> m</div>

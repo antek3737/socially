@@ -110,11 +110,11 @@
     height: 80%;
     width: 25%;
     background-color: white;
-    font-size: 3vmax;
+    font-size: 6vh;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 
     border-radius: 5vh;
     opacity: 1;
@@ -124,9 +124,9 @@
 .event-left {
     width: 50%;
     height: 100%;
-    font-size: 4vmax;
     z-index: 0;
 
+    font-size: inherit;
     border-radius: 5vh 0 0 5vh;
     background-color: transparent;
     border: none;
@@ -140,9 +140,9 @@
 .event-right {
     width: 50%;
     height: 100%;
-    font-size: 4vmax;
     z-index: 0;
 
+    font-size: inherit;
     border-radius: 0 5vh 5vh 0;
     background-color: transparent;
     border: none;
@@ -208,8 +208,8 @@
 
     .event-choosebar {
         height: 58%;
-        width: 27%;
-    }
+        width: 30%;
+   }
 
     .event-border {
         width: 15%;

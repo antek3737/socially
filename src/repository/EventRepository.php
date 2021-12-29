@@ -56,7 +56,7 @@ class EventRepository extends Repository
             SELECT E."IDevent" ,"eventDescription","eventLocation","eventPhoto","eventTime" from "GlobUserLocalUserGroupEvent"
             join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
             join "GlobUserLocalUserGroup" GULUG on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
-            where "IDgroup" =:IDgroup;
+            where "IDgroup" =:IDgroup ORDER BY "eventTime";
         ');
 
 
@@ -83,17 +83,16 @@ class EventRepository extends Repository
 
         return $result;
     }
-
     public function getEventsInCurrentGroupNotBelongingToUser(): array
     {
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-                        SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
-                        from "GlobUserLocalUserGroupEvent"
-                        join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
-                        join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
-                        where "IDgroup" = :IDgroup and GULUG."IDglobUserlocalUsergroup" !=:IDglobUserlocalUsergroup ;
+                   SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+from "GlobUserLocalUserGroupEvent"
+         join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+         join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+where "IDgroup" = :IDgroup and "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" != :IDglobUserlocalUsergroup ORDER BY "eventTime";
         ');
 
 
@@ -119,6 +118,7 @@ class EventRepository extends Repository
 
             $temp->setEventPhoto($event['eventPhoto']);
             $temp->setIDevent($event['IDevent']);
+
 
             $result[] = $temp;
         }
@@ -131,11 +131,11 @@ class EventRepository extends Repository
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-                        SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
-                        from "GlobUserLocalUserGroupEvent"
-                        join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
-                        join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
-                        where "IDgroup" = :IDgroup and GULUG."IDglobUserlocalUsergroup" =:IDglobUserlocalUsergroup ;
+                      SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+                      from "GlobUserLocalUserGroupEvent"
+                      join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+                      join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+                      where "IDgroup" = :IDgroup and "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = :IDglobUserlocalUsergroup ORDER BY "eventTime";
         ');
 
 
@@ -161,6 +161,7 @@ class EventRepository extends Repository
 
             $temp->setEventPhoto($event['eventPhoto']);
             $temp->setIDevent($event['IDevent']);
+
 
             $result[] = $temp;
         }
