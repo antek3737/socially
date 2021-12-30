@@ -88,11 +88,16 @@ class EventRepository extends Repository
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-                   SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
-from "GlobUserLocalUserGroupEvent"
-         join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
-         join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
-where "IDgroup" = :IDgroup and "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" != :IDglobUserlocalUsergroup ORDER BY "eventTime";
+                SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+                from "GlobUserLocalUserGroupEvent"
+                join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+                join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+                where "IDgroup" = :IDgroup and "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" != :IDglobUserlocalUsergroup
+                    EXCEPT SELECT E."IDevent", "eventDescription", "eventLocation", "eventPhoto", "eventTime"
+                    from "GlobUserLocalUserGroupEvent"
+                    join "Event" E on "GlobUserLocalUserGroupEvent"."IDevent" = E."IDevent"
+                    join "GlobUserLocalUserGroup" GULUG    on "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = GULUG."IDglobUserlocalUsergroup"
+                    where "IDgroup" = :IDgroup and "GlobUserLocalUserGroupEvent"."IDglobUserlocalUsergroup" = :IDglobUserlocalUsergroup ORDER BY "eventTime";
         ');
 
 
