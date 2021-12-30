@@ -28,7 +28,7 @@ class EventController extends AppController
 
     public function calendar()
     {
-        $events = $this->eventRepository->getEventsInCurrentGroup();
+        $events = $this->eventRepository->getEventsInCurrentGroupBelongingToUser();
         $this->render('calendar', ['events' => $events]);
     }
 
