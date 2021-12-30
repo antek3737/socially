@@ -114,3 +114,8 @@ input{
     justify-content: center;
     color: #bfbebf;
 }
+
+.no-valid{
+    border-block-color: red;
+    opacity: 0.9;
+}

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/public/css/personalSettings.css">
     <link rel="stylesheet" type="text/css" href="/public/css/register.css">
     <link rel="stylesheet" href="/public/font-awesome-4.7.0/css/font-awesome.css">
+    <script type="text/javascript" src="../public/js/passwordChecker.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
