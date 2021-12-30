@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/public/font-awesome-4.7.0/css/font-awesome.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="../public/js/addingEvent.js" defer></script>
+    <script type="text/javascript" src="../public/js/hidingEvent.js" defer></script>
 </head>
 <body>
 

@@ -20,6 +20,7 @@ Router::get('main', 'EventController');
 Router::get('chosen', 'EventController');
 Router::get('calendar', 'EventController');
 Router::get('addEvent', 'EventController');
+Router::get('removeEvent', 'EventController');
 
 //Router::get('groupDetails', 'DefaultController');
 Router::get('personalSettings', 'DefaultController');

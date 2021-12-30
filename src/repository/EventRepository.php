@@ -47,6 +47,23 @@ class EventRepository extends Repository
         $stmt->execute([$IDGlobUserLocalUserGroup, $IDevent]);
     }
 
+    public function unconnectGlobUserLocalUserGroupEventConnection($IDevent)
+    {
+
+        $groupRepository = new GroupRepository();
+        $IDGlobUserLocalUserGroup = $groupRepository->getCurrentIDglobUserlocalUsergroup();
+
+        $stmt = $this->database->connect()->prepare('
+            DELETE FROM "GlobUserLocalUserGroupEvent"
+            where "IDevent"=:IDevent and "IDglobUserlocalUsergroup" =:IDglobUserlocalUsergroup;
+        ');
+
+        $stmt->bindParam(':IDevent', $IDevent, PDO::PARAM_INT);
+        $stmt->bindParam(':IDglobUserlocalUsergroup', $IDGlobUserLocalUserGroup, PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
 
     public function getEventsInCurrentGroup(): array
     {

@@ -1,27 +1,17 @@
-const plusButtons = document.querySelectorAll(".event-left");
-const container = document.querySelector(".placement-content");
+const minusButtons = document.querySelectorAll(".event-right");
+let  IDontWantToSeeItAnymore = [];
 
-plusButtons.forEach(plusButton =>{
-    plusButton.addEventListener('click', function (event) {
+minusButtons.forEach(minusButton =>{
+    minusButton.addEventListener('click', function (event) {
         event.preventDefault();
         let id = this.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
         let e = this.parentElement.parentElement.parentElement.parentElement.parentElement;
         console.log(id);
-
-        fetch(`/addEvent/${id}`)
-            .then(function () {
-                console.log(id + "added")
-            })
-            .then(function () {
-                console.log(e)
-                e.remove();
-                let events = document.querySelectorAll('.placement-event');
-                container.innerHTML='';
-                events.forEach(event=>
-                container.appendChild(event)
-                )
-            })
-
+        console.log(e);
+        e.remove();
+        let events = document.querySelectorAll('.placement-event');
+        container.innerHTML='';
+        events.forEach(event=> container.appendChild(event));
     })
 });
 

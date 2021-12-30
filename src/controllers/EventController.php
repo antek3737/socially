@@ -77,5 +77,10 @@ class EventController extends AppController
         $this->eventRepository->generateGlobUserLocalUserGroupEventConnection($id);
     }
 
+    public function removeEvent(int $id){
+        http_response_code(200);
+        $this->eventRepository->unconnectGlobUserLocalUserGroupEventConnection($id);
+    }
+
 
 }
