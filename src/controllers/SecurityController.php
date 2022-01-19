@@ -39,10 +39,10 @@ class SecurityController extends AppController
             return $this->render("logging", ["message" => $exception->getMessage()]);
         }
 
-        $this->validatePassword($globPassword, $globUser->getGlobPassword(), $globUser->getGlobSalt(),'logging');
+        $this->validatePassword($globPassword, $globUser->getGlobPassword(), $globUser->getGlobSalt(), 'logging');
 
 
-        if($this->message ==null){
+        if ($this->message == null) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/groups");
         }
@@ -50,23 +50,24 @@ class SecurityController extends AppController
 
     }
 
-    private function isPosted(string $template){
+    private function isPosted(string $template)
+    {
 
         if (!$this->isPost()) {
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
     }
 
 
-    public function validatePassword($givenGlobPassword, $trueGlobPassword, $salt,$template)
+    public function validatePassword($givenGlobPassword, $trueGlobPassword, $salt, $template)
     {
         $givenGlobPassword = hash("sha512", $givenGlobPassword . $salt);
 
         if ($trueGlobPassword !== $givenGlobPassword) {
             $this->message = "Wrong password!";
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
@@ -79,7 +80,7 @@ class SecurityController extends AppController
 
         $this->isPosted('register');
 
-        $globPhoto = $this->uploadPhoto('globPhoto','register');
+        $globPhoto = $this->uploadPhoto('globPhoto', 'register');
 
         $globName = $_POST["globName"];
         $globPhoneNumber = $_POST["globPhoneNumber"];
@@ -91,12 +92,12 @@ class SecurityController extends AppController
 
         $globUserToCreate = new GlobUser($globName, $globPhoneNumber, $globEmail, $globPassword, $globSalt, $globPhoto);
 
-        $message = $this->validateUniquenessOfNameEmailAndPhoneNumber($globUserToCreate,'register');
+        $message = $this->validateUniquenessOfNameEmailAndPhoneNumber($globUserToCreate, 'register');
 
 
         $this->GlobUserRepository->createGlobUser($globUserToCreate);
 
-        if($this->message ==null){
+        if ($this->message == null) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/logging");
         }
@@ -108,19 +109,19 @@ class SecurityController extends AppController
 
         if ($this->GlobUserRepository->isGlobNameTaken($globUserToAdd->getGlobName())) {
             $this->message = "User with this name exists!";
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
         if ($this->GlobUserRepository->isGlobEmailTaken($globUserToAdd->getGlobEmail())) {
             $this->message = "User with this email exists!";
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
         if ($this->GlobUserRepository->isGlobPhoneNumberTaken($globUserToAdd->getGlobPhoneNumber())) {
             $this->message = "User with this phone number exists!";
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
@@ -132,13 +133,13 @@ class SecurityController extends AppController
 
         if ($file['size'] > self::MAX_FILE_SIZE) {
             $this->message = 'File is too large for destination file system.';
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
         if (!isset($file['type']) || !in_array($file['type'], self::SUPPORTED_TYPES)) {
             $this->message = 'File type is not supported.';
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
     }
@@ -150,17 +151,17 @@ class SecurityController extends AppController
         if (!is_uploaded_file($_FILES[$inputName]['tmp_name'])) {
 
             $this->message = 'File was not uploaded!';
-            $this->render($template,["message" => $this->message]);
+            $this->render($template, ["message" => $this->message]);
             die();
         }
 
     }
 
 
-    private function uploadPhoto(string $inputName,string $template)
+    private function uploadPhoto(string $inputName, string $template)
     {
         $this->isUploadedPhoto($inputName, $template);
-        $this->validatePhoto($_FILES[$inputName],$template);
+        $this->validatePhoto($_FILES[$inputName], $template);
 
         move_uploaded_file(
             $_FILES['globPhoto']['tmp_name'],
@@ -176,11 +177,14 @@ class SecurityController extends AppController
         http_response_code(200);
 
         if (isset($_COOKIE['globUser'])) {
-            setcookie("globUser", "", time()-3600);
+            setcookie("globUser", "", time() - 3600);
         }
 
         if (isset($_COOKIE['group'])) {
-            setcookie("group", "", time()-3600);
+            setcookie("group", "", time() - 3600);
+        }
+        if (isset($_COOKIE['IDGlobUserLocalUser'])) {
+            setcookie("IDGlobUserLocalUser", "", time() - 3600);
         }
 
     }
